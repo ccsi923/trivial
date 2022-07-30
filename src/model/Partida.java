@@ -7,11 +7,13 @@ public class Partida {
 
     private String playerName;
     private int score;
+    private int preguntasAcertadas;
     private ArrayList<Pregunta> preguntas;
 
     private void initPlayer(String playerName) {
         this.playerName = playerName;
         this.score = 0;
+        this.preguntasAcertadas = 0;
     }
 
     private void initPreguntas() {
@@ -43,11 +45,13 @@ public class Partida {
             boolean respuesta = preguntaUsuario();
             if (respuesta == preguntaActual.isTrue()) {
                 this.score = this.score + preguntaActual.getDificultad();
+                preguntasAcertadas++;
                 System.out.println("Has acertado, tu puntuacion se ha incrementado a: " + this.score);
             } else {
                 System.out.println("Buen intento, has fallado");
             }
         }
+        mostrarEstadisticas();
     }
 
     private void mostrarPregunta(Pregunta pregunta) {
@@ -61,4 +65,10 @@ public class Partida {
         return scanner.nextBoolean();
     }
 
+    private void mostrarEstadisticas() {
+        System.out.println("Total de respuestas acertadas: " + this.preguntasAcertadas);
+        System.out.println("Total de puntuación obtenida: " + this.score);
+        double percentage = (double)this.preguntasAcertadas / this.preguntas.size() * 100;
+        System.out.println("Tanto por ciento de aciertos: " + percentage + "%");
+    }
 }
