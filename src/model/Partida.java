@@ -62,7 +62,9 @@ public class Partida {
     private boolean preguntaUsuario() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("true o false?");
-        return scanner.nextBoolean();
+        boolean result = scanner.nextBoolean();
+        scanner.close();
+        return result;
     }
 
     private void mostrarEstadisticas() {
